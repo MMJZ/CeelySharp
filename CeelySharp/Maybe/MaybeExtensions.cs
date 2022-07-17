@@ -28,7 +28,7 @@ public static class MListExtensions
     {
         var s = await source;
         var i = await inner;
-        await Maybe.Guard(!EqualityComparer<K>.Default
+        await Maybe.Guard(EqualityComparer<K>.Default
             .Equals(outerKeySelector(s), innerKeySelector(i)));
         return resultSelector(s, i);
     }

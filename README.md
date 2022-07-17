@@ -4,7 +4,7 @@ This repo fleshes out the C# implementations of the monads `Maybe`, `List`, and 
 
 The async/await capabilities of `Maybe` and `List` are implementated, and then for all three monads Linq Query syntax is implemented in terms of identical async/await syntax.
 
-The resulting Linq Query syntax implementation for List is nearly identical (excluding exception handling) to that implicitly provided by `IEnumerable<T>`, but with the following extra requirements:
+The resulting Linq Query syntax implementation for `List` is nearly identical (excluding exception handling) to that implicitly provided by `IEnumerable<T>`, but with the following extra requirements:
 
 - lists awaited in an async method body must be declared before the body start;
 - lists must not be otherwise mutated during method execution; and

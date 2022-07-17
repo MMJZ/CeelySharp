@@ -13,7 +13,7 @@ var c = new MList<int> { 7, 8, 9 };
 
 var a = new MList<int>{ 1, 2, 3 };
 var b = new MList<int> { 4, 5, 6 };
-var p = ProductAsync(a, b);
+var p = Product(a, b);
 
 foreach (var t in p)
 {

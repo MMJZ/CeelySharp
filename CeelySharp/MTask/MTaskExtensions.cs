@@ -32,7 +32,7 @@ public static class MTaskExtensions
     {
         var s = await source;
         var i = await inner;
-        await MTask.Guard(!EqualityComparer<K>.Default
+        await MTask.Guard(EqualityComparer<K>.Default
             .Equals(outerKeySelector(s), innerKeySelector(i)));
         return resultSelector(s, i);
     }

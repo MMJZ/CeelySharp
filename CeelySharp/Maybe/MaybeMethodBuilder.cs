@@ -28,8 +28,8 @@ public class MaybeMethodBuilder<TResult>
     }
 
     public Maybe<TResult> Task => _retSet
-        ? Maybe.Some(_ret)
-        : Maybe.None<TResult>();
+        ? new Some<TResult>(_ret)
+        : new None<TResult>();
 
     public void SetResult(TResult result)
     {

@@ -8,7 +8,7 @@ public static class MListExtensions
         var t = await source;
         return resultSelector(t, await selector(t));
     }
-    
+
     public static async MList<U> Select<T, U>(
         this MList<T> source, Func<T, U> selector)
     {
@@ -30,7 +30,7 @@ public static class MListExtensions
     {
         var s = await source;
         var i = await inner;
-        await MList.Guard(!EqualityComparer<K>.Default
+        await MList.Guard(EqualityComparer<K>.Default
             .Equals(outerKeySelector(s), innerKeySelector(i)));
         return resultSelector(s, i);
     }

@@ -7,9 +7,11 @@ namespace CeelySharp.MList;
 public static class MList
 {
     private static readonly MList<Void> MEmpty = new();
-    private static readonly MList<Void> MPure = new() { new Void() };
+    private static readonly MList<Void> MPure = Unit(new Void());
     public static MList<Void> Guard(bool predicate) =>
         predicate ? MPure : MEmpty;
+
+    public static async MList<T> Unit<T>(T t) => t;
 }
 
 public interface IMList : ICriticalNotifyCompletion
