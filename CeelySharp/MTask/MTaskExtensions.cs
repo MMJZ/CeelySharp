@@ -21,7 +21,7 @@ public static class MTaskExtensions
         this Task<T> source, Func<T, bool> predicate)
     {
         var t = await source;
-        await MList.MList.Guard(predicate(t));
+        await MTask.Guard(predicate(t));
         return t;
     }
 
@@ -32,9 +32,8 @@ public static class MTaskExtensions
     {
         var s = await source;
         var i = await inner;
-        if (!EqualityComparer<K>.Default.Equals(
-                outerKeySelector(s), innerKeySelector(i)))
-            throw new OperationCanceledException();
+        await MTask.Guard(!EqualityComparer<K>.Default
+            .Equals(outerKeySelector(s), innerKeySelector(i)));
         return resultSelector(s, i);
     }
 

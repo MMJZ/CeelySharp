@@ -7,7 +7,7 @@ namespace CeelySharp.MList;
 public static class MList
 {
     private static readonly MList<Void> MEmpty = new();
-    private static readonly MList<Void> MPure = new(){new Void()};
+    private static readonly MList<Void> MPure = new() { new Void() };
     public static MList<Void> Guard(bool predicate) =>
         predicate ? MPure : MEmpty;
 }

@@ -30,9 +30,8 @@ public static class MListExtensions
     {
         var s = await source;
         var i = await inner;
-        if (!EqualityComparer<K>.Default.Equals(
-                outerKeySelector(s), innerKeySelector(i)))
-            throw new OperationCanceledException();
+        await MList.Guard(!EqualityComparer<K>.Default
+            .Equals(outerKeySelector(s), innerKeySelector(i)));
         return resultSelector(s, i);
     }
 

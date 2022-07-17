@@ -7,15 +7,11 @@ public class MaybeMethodBuilder<TResult>
 {
     private bool _retSet;
     private TResult _ret = default!;
-    private IAsyncStateMachine? _asyncStateMachine;
 
     public static MaybeMethodBuilder<TResult> Create() => new();
 
-    public void Start<TStateMachine>(ref TStateMachine stateMachine) where TStateMachine : IAsyncStateMachine
-    {
-        _asyncStateMachine = stateMachine;
+    public void Start<TStateMachine>(ref TStateMachine stateMachine) where TStateMachine : IAsyncStateMachine =>
         stateMachine.MoveNext();
-    }
 
     public void SetStateMachine(IAsyncStateMachine _) => throw new NotImplementedException();
 
@@ -31,7 +27,9 @@ public class MaybeMethodBuilder<TResult>
     {
     }
 
-    public Maybe<TResult> Task => _retSet ? Maybe.Some(_ret) : Maybe.None<TResult>();
+    public Maybe<TResult> Task => _retSet
+        ? Maybe.Some(_ret)
+        : Maybe.None<TResult>();
 
     public void SetResult(TResult result)
     {

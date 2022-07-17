@@ -1,8 +1,6 @@
 ﻿using CeelySharp.Maybe;
 using CeelySharp.MList;
 
-var a = new MList<int>{ 1, 2, 3 };
-var b = new MList<int> { 4, 5, 6 };
 var c = new MList<int> { 7, 8, 9 };
 // var d = new MList<int> { 1, 4, 9 };
 // var e = new MList<int>();
@@ -13,20 +11,14 @@ var c = new MList<int> { 7, 8, 9 };
 
 // var p = Unit("asd");
 
-var p = Product(a, b);
+var a = new MList<int>{ 1, 2, 3 };
+var b = new MList<int> { 4, 5, 6 };
+var p = ProductAsync(a, b);
 
-Console.WriteLine();
-Console.WriteLine($"result");
-foreach (var t in GetPrint(p))
+foreach (var t in p)
 {
     Console.WriteLine(t);
 }
-
-// Console.WriteLine(Unit2("asd"));
-// Console.WriteLine(Product2(Maybe.Some(2), Maybe.Some(2)));
-
-Console.WriteLine($"result");
-Console.WriteLine();
 
 async MList<(T, TU)> ProductAsync<T, TU>(MList<T> ts, MList<TU> us)
 {
@@ -40,9 +32,6 @@ MList<(int, TU)> Product<TU>(MList<int> ts, MList<TU> us) =>
     from u in us
     where t == 2
     select (t, u);
-
-async MList<string> GetPrint<T>(MList<T> ts) => $"Value: {await ts}";
-
 
 async MList<(T, TU, TV, TW)> Product4Async<T, TU, TV, TW>(MList<T> ts, MList<TU> us, MList<TV> vs, MList<TW> ws)
 {
