@@ -11,9 +11,7 @@ public class UnitTest // heh
     [Test]
     public void ListUnit()
     {
-        CollectionAssert.AreEqual(
-            new[] { 1 },
-            MList.Unit(1));
+        CollectionAssert.AreEqual(new[] { 1 }, MList.Unit(1));
     }
 
     [Test]
@@ -25,6 +23,6 @@ public class UnitTest // heh
     [Test]
     public void TaskUnit()
     {
-        Assert.That(MTask.Unit(1).Result, Is.EqualTo(1));
+        Assert.AreEqual(1, MTask.Unit(1).Result);
     }
 }
