@@ -1,4 +1,4 @@
-namespace CeelySharp.MList;
+namespace CeelySharp.ListMonad;
 
 public static class MListExtensions
 {
@@ -10,10 +10,8 @@ public static class MListExtensions
     }
 
     public static async MList<U> Select<T, U>(
-        this MList<T> source, Func<T, U> selector)
-    {
-        return selector(await source);
-    }
+        this MList<T> source, Func<T, U> selector) =>
+        selector(await source);
 
     public static async MList<T> Where<T>(
         this MList<T> source, Func<T, bool> predicate)

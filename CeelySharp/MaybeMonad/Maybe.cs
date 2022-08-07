@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Void = CeelySharp.Base.Void;
 
-namespace CeelySharp.Maybe;
+namespace CeelySharp.MaybeMonad;
 
 public static class Maybe
 {

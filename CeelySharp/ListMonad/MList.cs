@@ -2,7 +2,7 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using Void = CeelySharp.Base.Void;
 
-namespace CeelySharp.MList;
+namespace CeelySharp.ListMonad;
 
 public static class MList
 {

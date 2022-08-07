@@ -1,4 +1,4 @@
-namespace CeelySharp.MTask;
+namespace CeelySharp.TaskMonad;
 
 public static class MTask
 {
@@ -11,4 +11,6 @@ public static class MTask
     public static async Task Unit()
     {
     }
+
+    public static async Task<T> Unit<T>(T t) => t;
 }

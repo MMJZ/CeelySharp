@@ -8,6 +8,7 @@ The async/await capabilities of `Maybe` and `List` are implemented, and then Lin
 
 The resulting Linq Query syntax implementation for `List<T>` is nearly identical (excluding exception handling) to that implicitly provided by `IEnumerable<T>`, but with the following extra requirements:
 
+- any side effects in the body must occur after the last `from` statement in the query;
 - lists awaited in an async method body must be declared before the body start;
 - lists must not be otherwise mutated during method execution; and
 - lists must not be awaited more than once in the same method body.

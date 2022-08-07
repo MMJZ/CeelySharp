@@ -1,6 +1,6 @@
-namespace CeelySharp.Maybe;
+namespace CeelySharp.MaybeMonad;
 
-public static class MListExtensions
+public static class MaybeExtensions
 {
     public static async Maybe<V> SelectMany<T, U, V>(
         this Maybe<T> source, Func<T, Maybe<U>> selector, Func<T, U, V> resultSelector)
@@ -8,7 +8,7 @@ public static class MListExtensions
         var t = await source;
         return resultSelector(t, await selector(t));
     }
-    
+
     public static async Maybe<U> Select<T, U>(
         this Maybe<T> source, Func<T, U> selector) =>
         selector(await source);

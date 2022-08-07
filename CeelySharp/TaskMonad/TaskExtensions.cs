@@ -1,6 +1,4 @@
-using CeelySharp.MList;
-
-namespace CeelySharp.MTask;
+namespace CeelySharp.TaskMonad;
 
 public static class MTaskExtensions
 {
@@ -10,12 +8,10 @@ public static class MTaskExtensions
         var t = await source;
         return resultSelector(t, await selector(t));
     }
-    
+
     public static async Task<U> Select<T, U>(
-        this Task<T> source, Func<T, U> selector)
-    {
-        return selector(await source);
-    }
+        this Task<T> source, Func<T, U> selector) =>
+        selector(await source);
 
     public static async Task<T> Where<T>(
         this Task<T> source, Func<T, bool> predicate)
@@ -26,7 +22,7 @@ public static class MTaskExtensions
     }
 
     public static async Task<V> Join<T, U, K, V>(
-        this Task<T> source, MList<U> inner,
+        this Task<T> source, Task<U> inner,
         Func<T, K> outerKeySelector, Func<U, K> innerKeySelector,
         Func<T, U, V> resultSelector)
     {

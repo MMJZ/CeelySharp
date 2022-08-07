@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 
-namespace CeelySharp.Maybe;
+namespace CeelySharp.MaybeMonad;
 
 public class MaybeMethodBuilder<TResult>
 {

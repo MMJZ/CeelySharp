@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 
-namespace CeelySharp.MList;
+namespace CeelySharp.ListMonad;
 
 public class MListMethodBuilder<TResult>
 {
@@ -47,7 +47,7 @@ public class MListMethodBuilder<TResult>
                 return;
             }
         }
-        
+
         _awaiterStack.Pop();
         mList.AwaitState = -1;
         if (_awaiterStack.Any())
