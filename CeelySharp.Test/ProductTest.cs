@@ -8,6 +8,7 @@ using Void = CeelySharp.Base.Void;
 
 namespace CeelySharp.Test;
 
+[TestFixture]
 public class ProductTest
 {
     private readonly record struct ListTestCase((int, int)[] Expected, MList<int> Tm, MList<int> Um,

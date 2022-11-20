@@ -30,18 +30,18 @@ public class MListMethodBuilder<TResult>
         where TStateMachine : IAsyncStateMachine
     {
         var mList = (IMList)awaiter;
-        if (mList.AwaitState == -1)
+        if (mList.AwaitState == AwaitState.NoAwait)
         {
             if (_awaiterStack.Any())
             {
-                _awaiterStack.Peek().AwaitState = 0;
+                _awaiterStack.Peek().AwaitState = AwaitState.SecondaryAwait;
             }
 
             mList.ResetEnumerator();
-            mList.AwaitState = 1;
+            mList.AwaitState = AwaitState.PrimaryAwait;
             _awaiterStack.Push(mList);
 
-            if (mList.HasMoveNext())
+            if (mList.IsCompleted) // i.e. has a value to yield i.e. is not completed
             {
                 stateMachine.MoveNext();
                 return;
@@ -49,10 +49,10 @@ public class MListMethodBuilder<TResult>
         }
 
         _awaiterStack.Pop();
-        mList.AwaitState = -1;
+        mList.AwaitState = AwaitState.NoAwait;
         if (_awaiterStack.Any())
         {
-            _awaiterStack.Peek().AwaitState = 1;
+            _awaiterStack.Peek().AwaitState = AwaitState.PrimaryAwait;
             stateMachine.GetType().GetField("<>1__state")?.SetValue(stateMachine, -1);
             stateMachine.MoveNext();
         }
